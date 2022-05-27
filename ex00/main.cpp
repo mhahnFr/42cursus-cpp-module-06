@@ -35,7 +35,11 @@ int main(int argc, char *argv[]) {
 }
 
 static void printFromInt(int arg) {
-    printChar(static_cast<char>(arg));
+    if (arg >= CHAR_MIN && arg <= CHAR_MAX) {
+        printChar(static_cast<char>(arg));
+    } else {
+        std::cout << "char:   impossible" << std::endl;
+    }
     std::cout << "int:    " << arg << std::endl
               << "float:  " << std::fixed << static_cast<float>(arg) << std::endl
               << "double: " << std::fixed << static_cast<double>(arg) << std::endl;
@@ -49,16 +53,32 @@ static void printFromChar(char arg) {
 }
 
 static void printFromFloat(float arg) {
-    printChar(static_cast<char>(arg));
-    std::cout << "int:    " << static_cast<int>(arg) << std::endl
-              << "float:  " << std::fixed << arg << std::endl
+    if (arg >= CHAR_MIN && arg <= CHAR_MAX) {
+        printChar(static_cast<char>(arg));
+    } else {
+        std::cout << "char:   impossible" << std::endl;
+    }
+    if (!isnan(arg) && !isinf(arg)) {
+        std::cout << "int:    " << static_cast<int>(arg) << std::endl;
+    } else {
+        std::cout << "int:    impossible" << std::endl;
+    }
+    std::cout << "float:  " << std::fixed << arg << std::endl
               << "double: " << std::fixed << static_cast<double>(arg) << std::endl;
 }
 
 static void printFromDouble(double arg) {
-    printChar(static_cast<char>(arg));
-    std::cout << "int:    " << static_cast<int>(arg) << std::endl
-              << "float:  " << std::fixed << static_cast<float>(arg) << std::endl
+    if (arg >= CHAR_MIN && arg <= CHAR_MAX) {
+        printChar(static_cast<char>(arg));
+    } else {
+        std::cout << "char:   impossible" << std::endl;
+    }
+    if (!isnan(arg) && !isinf(arg)) {
+        std::cout << "int:    " << static_cast<int>(arg) << std::endl;
+    } else {
+        std::cout << "int:    impossible" << std::endl;
+    }
+    std::cout << "float:  " << std::fixed << static_cast<float>(arg) << std::endl
               << "double: " << std::fixed << arg  << std::endl;
 }
 
